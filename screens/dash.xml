@@ -1,4 +1,10 @@
 <screen>
+    <styles>
+        <!-- Tach dial: orange filled part, and an invisible knob -->
+        <style name="tach_indicator" arc_width="16" arc_color="0xf07318"/>
+        <style name="tach_knob" bg_opa="0" pad_all="0"/>
+    </styles>
+
     <view style_bg_color="0x14171a">
 
         <!-- TOP STRIP: left turn signal, four warning symbols, right turn signal.
@@ -50,9 +56,10 @@
         <lv_arc width="180" height="180" align="center" y="6"
                 bg_start_angle="135" bg_end_angle="45"
                 min_value="0" max_value="3000" value="1850"
-                style_arc_width="16" style_arc_color="0x2a2f36"
-                style_arc_width:indicator="16" style_arc_color:indicator="0xf07318"
-                style_bg_opa:knob="0" style_pad_all:knob="0"/>
+                style_arc_width="16" style_arc_color="0x2a2f36">
+            <style name="tach_indicator" selector="indicator"/>
+            <style name="tach_knob" selector="knob"/>
+        </lv_arc>
         <lv_label text="1850" align="center" y="2" style_text_font="montserrat_48" style_text_color="0xf0f6fc"/>
         <lv_label text="RPM" align="center" y="42" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
 
