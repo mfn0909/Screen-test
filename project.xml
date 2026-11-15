@@ -1,0 +1,7 @@
+<project>
+    <targets>
+        <target name="bx2370_dash">
+            <display width="480" height="272" color_format="RGB565"/>
+        </target>
+    </targets>
+</project>
