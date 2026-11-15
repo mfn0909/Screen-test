@@ -1,70 +1,63 @@
 <screen>
     <styles>
-        <!-- Tach dial: orange filled part, and an invisible knob -->
-        <style name="tach_indicator" arc_width="16" arc_color="0xf07318"/>
-        <style name="tach_knob" bg_opa="0" pad_all="0"/>
+        <!-- Tach: thin orange arc. Side gauges: thin light arcs. Knobs are invisible. -->
+        <style name="tach_indicator" arc_width="10" arc_color="0xf07318"/>
+        <style name="side_indicator" arc_width="5" arc_color="0xe6edf3"/>
+        <style name="knob_hidden" bg_opa="0" pad_all="0"/>
     </styles>
 
-    <view style_bg_color="0x14171a">
+    <view style_bg_color="0x0a0c0f">
 
-        <!-- TOP STRIP: left turn signal, four warning symbols, right turn signal.
-             Lit = bright color. Off = dark grey. Left turn and two warnings are lit as a demo. -->
+        <!-- TOP ROW: left turn, four warning symbols, right turn.
+             Lit = bright color. Off = dark grey. Demo: left turn, battery and parking brake are lit. -->
+        <lv_label text="&#xF053;&#xF053;" align="top_left" x="24" y="14" style_text_font="montserrat_20" style_text_color="0x3ddc84"/>
 
-        <!-- Left turn signal (lit green) -->
-        <lv_obj width="64" height="38" align="top_left" x="12" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2ea043">
-            <lv_label text="&#xF053;&#xF053;" align="center" style_text_font="montserrat_20" style_text_color="0xffffff"/>
-        </lv_obj>
+        <lv_label text="&#xF240;" align="top_left" x="163" y="14" style_text_font="montserrat_20" style_text_color="0xff4d4f"/>
+        <lv_label text="&#xF043;" align="top_left" x="208" y="14" style_text_font="montserrat_20" style_text_color="0x2d333b"/>
+        <lv_label text="P"       align="top_left" x="253" y="14" style_text_font="montserrat_20" style_text_color="0xffb020"/>
+        <lv_label text="&#xF071;" align="top_left" x="298" y="14" style_text_font="montserrat_20" style_text_color="0x2d333b"/>
 
-        <!-- Charging / battery (lit red) -->
-        <lv_obj width="44" height="38" align="top_left" x="131" y="6" style_radius="6" style_border_width="0" style_bg_color="0xda3633">
-            <lv_label text="&#xF240;" align="center" style_text_font="montserrat_20" style_text_color="0xffffff"/>
-        </lv_obj>
-        <!-- Oil pressure drop (off) -->
-        <lv_obj width="44" height="38" align="top_left" x="189" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
-            <lv_label text="&#xF043;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
-        </lv_obj>
-        <!-- Parking brake P (lit amber) -->
-        <lv_obj width="44" height="38" align="top_left" x="247" y="6" style_radius="6" style_border_width="0" style_bg_color="0xf0a30a">
-            <lv_label text="P" align="center" style_text_font="montserrat_20" style_text_color="0x14171a"/>
-        </lv_obj>
-        <!-- General warning triangle (off) -->
-        <lv_obj width="44" height="38" align="top_left" x="305" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
-            <lv_label text="&#xF071;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
-        </lv_obj>
+        <lv_label text="&#xF054;&#xF054;" align="top_right" x="-24" y="14" style_text_font="montserrat_20" style_text_color="0x2d333b"/>
 
-        <!-- Right turn signal (off) -->
-        <lv_obj width="64" height="38" align="top_right" x="-12" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
-            <lv_label text="&#xF054;&#xF054;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
-        </lv_obj>
+        <!-- COOLANT TEMP: curved gauge on the left, fills from the bottom up. 60% shown. -->
+        <lv_arc width="250" height="250" align="center" y="8"
+                bg_start_angle="140" bg_end_angle="220"
+                min_value="0" max_value="100" value="60"
+                style_arc_width="5" style_arc_color="0x1c2128">
+            <style name="side_indicator" selector="indicator"/>
+            <style name="knob_hidden" selector="knob"/>
+        </lv_arc>
+        <lv_label text="TEMP" align="top_left" x="24" y="108" style_text_font="montserrat_14" style_text_color="0x7d8590"/>
+        <lv_label text="185 F" align="top_left" x="24" y="128" style_text_font="montserrat_20" style_text_color="0xf5f7fa"/>
 
-        <!-- Orange divider line -->
-        <lv_obj width="480" height="3" align="top_left" x="0" y="50" style_radius="0" style_border_width="0" style_bg_color="0xf07318"/>
+        <!-- FUEL: curved gauge on the right, fills from the bottom up.
+             Reverse mode fills as the value falls, so 75% fuel is shown as value 25. -->
+        <lv_arc width="250" height="250" align="center" y="8"
+                bg_start_angle="320" bg_end_angle="40" mode="reverse"
+                min_value="0" max_value="100" value="25"
+                style_arc_width="5" style_arc_color="0x1c2128">
+            <style name="side_indicator" selector="indicator"/>
+            <style name="knob_hidden" selector="knob"/>
+        </lv_arc>
+        <lv_label text="FUEL" align="top_right" x="-24" y="108" style_text_font="montserrat_14" style_text_color="0x7d8590"/>
+        <lv_label text="75%" align="top_right" x="-24" y="128" style_text_font="montserrat_20" style_text_color="0xf5f7fa"/>
 
-        <!-- COOLANT TEMP: left bar. Track is 150 px tall; fill is 60% = 90 px, drawn from the bottom. -->
-        <lv_label text="TEMP" align="top_left" x="12" y="58" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
-        <lv_obj width="40" height="150" align="top_left" x="14" y="82" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36"/>
-        <lv_obj width="40" height="90" align="top_left" x="14" y="142" style_radius="6" style_border_width="0" style_bg_color="0xf07318"/>
-        <lv_label text="185 F" align="top_left" x="10" y="238" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
-
-        <!-- FUEL: right bar. Fill is 75% = 112 px, drawn from the bottom. -->
-        <lv_label text="FUEL" align="top_right" x="-12" y="58" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
-        <lv_obj width="40" height="150" align="top_right" x="-14" y="82" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36"/>
-        <lv_obj width="40" height="112" align="top_right" x="-14" y="120" style_radius="6" style_border_width="0" style_bg_color="0xf07318"/>
-        <lv_label text="75%" align="top_right" x="-12" y="238" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
-
-        <!-- TACH DIAL: 270 degree arc, 0 to 3000 RPM. Currently showing 1850. -->
-        <lv_arc width="180" height="180" align="center" y="6"
+        <!-- TACH: thin ring, 270 degrees, 0 to 3000 RPM. Showing 1850. -->
+        <lv_arc width="180" height="180" align="center" y="8"
                 bg_start_angle="135" bg_end_angle="45"
                 min_value="0" max_value="3000" value="1850"
-                style_arc_width="16" style_arc_color="0x2a2f36">
+                style_arc_width="10" style_arc_color="0x1c2128">
             <style name="tach_indicator" selector="indicator"/>
-            <style name="tach_knob" selector="knob"/>
+            <style name="knob_hidden" selector="knob"/>
         </lv_arc>
-        <lv_label text="1850" align="center" y="2" style_text_font="montserrat_48" style_text_color="0xf0f6fc"/>
-        <lv_label text="RPM" align="center" y="42" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
+        <lv_label text="1850" align="center" y="-8" style_text_font="montserrat_48" style_text_color="0xf5f7fa"/>
+        <lv_label text="RPM" align="center" y="30" style_text_font="montserrat_14" style_text_color="0x7d8590"/>
+        <lv_label text="1234.5 h" align="center" y="62" style_text_font="montserrat_14" style_text_color="0xb1bac4"/>
 
-        <!-- HOUR METER -->
-        <lv_label text="1234.5 h" align="bottom_mid" y="-8" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
+        <!-- MODEL BADGE: outlined pill at the bottom -->
+        <lv_obj width="104" height="22" align="bottom_mid" y="-8" style_radius="11" style_bg_opa="0" style_border_width="1" style_border_color="0xf07318">
+            <lv_label text="BX2370" align="center" style_text_font="montserrat_14" style_text_color="0xf07318"/>
+        </lv_obj>
 
     </view>
 </screen>
