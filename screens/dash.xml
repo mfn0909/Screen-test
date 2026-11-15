@@ -1,40 +1,63 @@
 <screen>
-    <view style_bg_color="0x0d1117">
+    <view style_bg_color="0x14171a">
 
-        <!-- COOLANT TEMP: left bar. Track is 190 px tall; fill is 60% = 114 px, drawn from the bottom. -->
-        <lv_label text="TEMP" align="top_left" x="12" y="8" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
-        <lv_obj width="40" height="190" align="top_left" x="14" y="34" style_radius="6" style_border_width="0" style_bg_color="0x222a33"/>
-        <lv_obj width="40" height="114" align="top_left" x="14" y="110" style_radius="6" style_border_width="0" style_bg_color="0x2ea043"/>
-        <lv_label text="185 F" align="top_left" x="10" y="232" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
+        <!-- TOP STRIP: left turn signal, four warning symbols, right turn signal.
+             Lit = bright color. Off = dark grey. Left turn and two warnings are lit as a demo. -->
 
-        <!-- FUEL: right bar. Fill is 75% = 142 px, drawn from the bottom. -->
-        <lv_label text="FUEL" align="top_right" x="-12" y="8" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
-        <lv_obj width="40" height="190" align="top_right" x="-14" y="34" style_radius="6" style_border_width="0" style_bg_color="0x222a33"/>
-        <lv_obj width="40" height="142" align="top_right" x="-14" y="82" style_radius="6" style_border_width="0" style_bg_color="0x388bfd"/>
-        <lv_label text="75%" align="top_right" x="-12" y="232" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
-
-        <!-- WARNING LIGHTS: two lit (BATT red, BRAKE amber), two off. Names are examples only. -->
-        <lv_obj width="70" height="26" align="top_left" x="85" y="10" style_radius="4" style_border_width="0" style_bg_color="0xda3633">
-            <lv_label text="BATT" align="center" style_text_color="0xffffff"/>
-        </lv_obj>
-        <lv_obj width="70" height="26" align="top_left" x="165" y="10" style_radius="4" style_border_width="0" style_bg_color="0x222a33">
-            <lv_label text="OIL" align="center" style_text_color="0x6e7681"/>
-        </lv_obj>
-        <lv_obj width="70" height="26" align="top_left" x="245" y="10" style_radius="4" style_border_width="0" style_bg_color="0xd29922">
-            <lv_label text="BRAKE" align="center" style_text_color="0x0d1117"/>
-        </lv_obj>
-        <lv_obj width="70" height="26" align="top_left" x="325" y="10" style_radius="4" style_border_width="0" style_bg_color="0x222a33">
-            <lv_label text="GLOW" align="center" style_text_color="0x6e7681"/>
+        <!-- Left turn signal (lit green) -->
+        <lv_obj width="64" height="38" align="top_left" x="12" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2ea043">
+            <lv_label text="&#xF053;&#xF053;" align="center" style_text_font="montserrat_20" style_text_color="0xffffff"/>
         </lv_obj>
 
-        <!-- TACH: big number, unit, and a bar (310 px track, 55% = 170 px fill). -->
-        <lv_label text="1850" align="center" y="-30" style_text_font="montserrat_48" style_text_color="0xf0f6fc"/>
-        <lv_label text="RPM" align="center" y="14" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
-        <lv_obj width="310" height="14" align="top_left" x="85" y="176" style_radius="7" style_border_width="0" style_bg_color="0x222a33"/>
-        <lv_obj width="170" height="14" align="top_left" x="85" y="176" style_radius="7" style_border_width="0" style_bg_color="0x2ea043"/>
+        <!-- Charging / battery (lit red) -->
+        <lv_obj width="44" height="38" align="top_left" x="131" y="6" style_radius="6" style_border_width="0" style_bg_color="0xda3633">
+            <lv_label text="&#xF240;" align="center" style_text_font="montserrat_20" style_text_color="0xffffff"/>
+        </lv_obj>
+        <!-- Oil pressure drop (off) -->
+        <lv_obj width="44" height="38" align="top_left" x="189" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
+            <lv_label text="&#xF043;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
+        </lv_obj>
+        <!-- Parking brake P (lit amber) -->
+        <lv_obj width="44" height="38" align="top_left" x="247" y="6" style_radius="6" style_border_width="0" style_bg_color="0xf0a30a">
+            <lv_label text="P" align="center" style_text_font="montserrat_20" style_text_color="0x14171a"/>
+        </lv_obj>
+        <!-- General warning triangle (off) -->
+        <lv_obj width="44" height="38" align="top_left" x="305" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
+            <lv_label text="&#xF071;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
+        </lv_obj>
+
+        <!-- Right turn signal (off) -->
+        <lv_obj width="64" height="38" align="top_right" x="-12" y="6" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36">
+            <lv_label text="&#xF054;&#xF054;" align="center" style_text_font="montserrat_20" style_text_color="0x6e7681"/>
+        </lv_obj>
+
+        <!-- Orange divider line -->
+        <lv_obj width="480" height="3" align="top_left" x="0" y="50" style_radius="0" style_border_width="0" style_bg_color="0xf07318"/>
+
+        <!-- COOLANT TEMP: left bar. Track is 150 px tall; fill is 60% = 90 px, drawn from the bottom. -->
+        <lv_label text="TEMP" align="top_left" x="12" y="58" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
+        <lv_obj width="40" height="150" align="top_left" x="14" y="82" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36"/>
+        <lv_obj width="40" height="90" align="top_left" x="14" y="142" style_radius="6" style_border_width="0" style_bg_color="0xf07318"/>
+        <lv_label text="185 F" align="top_left" x="10" y="238" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
+
+        <!-- FUEL: right bar. Fill is 75% = 112 px, drawn from the bottom. -->
+        <lv_label text="FUEL" align="top_right" x="-12" y="58" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
+        <lv_obj width="40" height="150" align="top_right" x="-14" y="82" style_radius="6" style_border_width="0" style_bg_color="0x2a2f36"/>
+        <lv_obj width="40" height="112" align="top_right" x="-14" y="120" style_radius="6" style_border_width="0" style_bg_color="0xf07318"/>
+        <lv_label text="75%" align="top_right" x="-12" y="238" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
+
+        <!-- TACH DIAL: 270 degree arc, 0 to 3000 RPM. Currently showing 1850. -->
+        <lv_arc width="180" height="180" align="center" y="6"
+                bg_start_angle="135" bg_end_angle="45"
+                min_value="0" max_value="3000" value="1850"
+                style_arc_width="16" style_arc_color="0x2a2f36"
+                style_arc_width:indicator="16" style_arc_color:indicator="0xf07318"
+                style_bg_opa:knob="0" style_pad_all:knob="0"/>
+        <lv_label text="1850" align="center" y="2" style_text_font="montserrat_48" style_text_color="0xf0f6fc"/>
+        <lv_label text="RPM" align="center" y="42" style_text_font="montserrat_20" style_text_color="0x8b949e"/>
 
         <!-- HOUR METER -->
-        <lv_label text="1234.5 h" align="bottom_mid" y="-12" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
+        <lv_label text="1234.5 h" align="bottom_mid" y="-8" style_text_font="montserrat_20" style_text_color="0xf0f6fc"/>
 
     </view>
 </screen>
